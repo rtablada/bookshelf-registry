@@ -1,0 +1,32 @@
+{
+  "name": "bookshelf-registry",
+  "version": "1.0.0",
+  "description": "A registry module for bookshelf.js",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tests --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtablada/bookshelf-registry.git"
+  },
+  "keywords": [
+    "orm",
+    "bookshelf"
+  ],
+  "author": "Ryan Tablada",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rtablada/bookshelf-registry/issues"
+  },
+  "homepage": "https://github.com/rtablada/bookshelf-registry#readme",
+  "dependencies": {
+    "bookshelf": "^0.9.1",
+    "knex": "^0.9.0"
+  },
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "mocha": "^2.3.3",
+    "sqlite3": "^3.1.1"
+  }
+}
