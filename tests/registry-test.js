@@ -25,6 +25,35 @@ describe('Registry', () => {
     it('can read a registered connection', () => {
       expect(registry.getConnection()).to.equal(dummies.connection);
     });
+
+    describe('registering connections', () => {
+      var freshRegistry;
+      var originalBookshelf;
+
+      beforeEach(() => {
+        require.cache[require.resolve('../lib/registry')] = null;
+
+        i18nOriginal = require.cache[require.resolve('bookshelf')].exports;
+
+        require.cache[require.resolve('bookshelf')].exports = function(x) {
+          return `${x}-foo`;
+        };
+
+        freshRegistry = require('../lib/registry');
+      });
+
+      afterEach(() => {
+        require.cache[require.resolve('../lib/registry')] = registry;
+        require.cache[require.resolve('bookshelf')] = originalBookshelf;
+      });
+
+      it('can register and find connections', () => {
+        freshRegistry.setConnection('mockconnection');
+
+        expect(freshRegistry.getConnection()).to.equal('mockconnection');
+        expect(freshRegistry.bookshelf).to.equal('mockconnection-foo');
+      });
+    });
   });
 
   describe('Model Registration', () => {
